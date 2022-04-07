@@ -12,3 +12,17 @@ RSpec.describe "Tests for method 'string'" do
         expect(string('CShello')).to eq('ollehSC')
     end
 end
+
+RSpec.describe "Tests for method 'pokemon'" do
+    it "Test for pokemon" do
+        num_pokemon = 3
+        result = [
+            {name: "Pika", color: "Yellow"},
+            {name: "Foo", color: "Green"},
+            {name: "Slow", color: "Red"}
+        ]
+
+        allow_any_instance_of(Object).to receive(:gets).and_return("Pika", "Yellow", "Foo", "Green", "Slow", "Red")
+        expect(pokemon(num_pokemon)).to eq(result)
+    end
+end
