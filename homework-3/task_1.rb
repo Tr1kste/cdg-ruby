@@ -4,7 +4,6 @@ BUFFER = 'buffer.txt'
 def index
     file = File.open(DATA_PATH)
     return file.readlines.map { |line| line.chomp }
-    file.close
 end
 
 def find(id)
@@ -48,5 +47,3 @@ def delete(id)
   
     File.delete(BUFFER) if File.exist?(BUFFER)
 end
-
-delete(0)
