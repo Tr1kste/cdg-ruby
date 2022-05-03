@@ -2,13 +2,12 @@ DATA_PATH = 'task.txt'
 BUFFER = 'buffer.txt'
 
 def index
-    file = File.open(DATA_PATH)
-    return file.readlines.map { |line| line.chomp }
+    File.foreach(DATA_PATH) { |line| puts line }
 end
 
 def find(id)
     File.foreach(DATA_PATH).with_index do |line, index|
-    return line if index == id
+    return line.chomp if index == id
     end
 end
 
@@ -19,7 +18,7 @@ def where(pattern)
             arr.push(index)
         end
     end
-    return arr.map {|i| i}
+    return arr.map {|i| puts i.to_i}
 end
 
 def update(id, text)
@@ -47,3 +46,5 @@ def delete(id)
   
     File.delete(BUFFER) if File.exist?(BUFFER)
 end
+
+index
