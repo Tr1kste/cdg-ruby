@@ -37,12 +37,12 @@ app = App.new
 while connection = server.accept
   request = connection.gets
   method, full_path = request.split(" ")
-  @path = full_path.split("?")[0]
+  path = full_path.split("?")[0]
   @eq = full_path.split("=")[1].to_i
 
   status, headers, body = app.call({
     "REQUEST_METHOD" => method,
-    "PATH_INFO" => @path,
+    "PATH_INFO" => path,
   })
 
   connection.print("HTTP/1.1 #{status}\r\n")
@@ -53,11 +53,19 @@ while connection = server.accept
 
   body.each do |part|
     if (full_path.include?("deposit"))
-      @balance += @eq
-      connection.print("#{part} #{@balance}")
+      if @eq > 0
+        @balance += @eq
+        connection.print("#{part} #{@balance}")
+      else
+        connection.print("#{part} #{@balance}")
+      end
     elsif (full_path.include?("withdraw"))
-      @balance -= @eq
-      connection.print("#{part} #{@balance}")
+      if @eq > 0 && @eq <= @balance
+        @balance -= @eq
+        connection.print("#{part} #{@balance}")
+      else
+        connection.print("#{part} #{@balance}")
+      end
     elsif (full_path.include?("balance"))
       connection.print("#{part} #{@balance}")
     else
