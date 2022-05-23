@@ -1,30 +1,33 @@
-def greeting(age, username, second_name)
-    age >=18 ? "Привет #{username} #{second_name}. Самое время заняться делом!" : 
-    "Привет #{username} #{second_name}. Тебе меньше 18 лет, но начать учиться программировать никогда не рано!"
+def greeting(age, name, surname)
+  if age >= 18
+    " - Привет #{name} #{surname}. Самое время заняться делом!"
+  else
+    " - Привет #{name} #{surname}. Тебе меньше 18 лет, но начать учиться программировать никогда не рано!"
+  end
 end
-
-print "Возраст >>> "
-age = gets.to_i
-print "Имя >>> "
-username = gets.chomp
-print "Фамилия >>> "
-second_name = gets.chomp
-
-puts greeting(age, username, second_name)
 
 def foobar(num_1, num_2)
-    if num_1 == 20
-        num_2
-    elsif num_2 == 20
-        num_1
-    else 
-        num_1 + num_2
-    end
+  if num_1 == 20
+    num_2
+  elsif num_2 == 20
+    num_1
+  else
+    num_1 + num_2
+  end
 end
 
-print "Введите число 1 >>> "
+print "Age -> "
+age = gets.to_i
+print "Name -> "
+name = gets.chomp
+print "Surname -> "
+surname = gets.chomp
+
+puts greeting(age, name, surname)
+
+print "Number #1 -> "
 num_1 = gets.to_i
-print "Введите число 2 >>> "
+print "Number #2 -> "
 num_2 = gets.to_i
 
 puts foobar(num_1, num_2)
