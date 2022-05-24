@@ -19,9 +19,9 @@ end
 print "Age -> "
 age = gets.to_i
 print "Name -> "
-name = gets.chomp
+name = gets.to_s.chomp
 print "Surname -> "
-surname = gets.chomp
+surname = gets.to_s.chomp
 
 puts greeting(age, name, surname)
 

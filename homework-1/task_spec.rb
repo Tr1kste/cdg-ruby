@@ -2,11 +2,15 @@ require "rspec"
 require "./task"
 
 RSpec.describe "#greeting" do
+  it "result will be string" do
+    expect(greeting(44, "Ted", "Lasso")).to be_an_instance_of(String)
+  end
+
   it "age >= 18" do
     expect(greeting(20, "Ted", "Lasso")).to eq(" - Привет Ted Lasso. Самое время заняться делом!")
   end
 
-  it "age <= 18" do
+  it "age < 18" do
     expect(greeting(12, "Ted", "Lasso")).to eq(" - Привет Ted Lasso. Тебе меньше 18 лет, но начать учиться программировать никогда не рано!")
   end
 
